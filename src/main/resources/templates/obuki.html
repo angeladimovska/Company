@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Projects</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/home">COMPANY</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+            <ul class="navbar-nav m-auto">
+                <li class="nav-item m-auto">
+                    <a class="nav-link active" href="/employees">Employees</a>
+                </li>
+                <li class="nav-item m-auto">
+                    <a class="nav-link active" href="/employeesByDep">Developers By Department</a>
+                </li>
+                <li class="nav-item m-auto">
+                    <a class="nav-link active" href="/projects">Projects</a>
+                </li>
+                <li class="nav-item m-auto">
+                    <a class="nav-link active" href="/obuki">Trainings</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h2 class="jumbotron-heading">TRAININGS</h2>
+    </div>
+</section>
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Lecture ID</th>
+                        <th scope="col">Lecture Name</th>
+                        <th scope="col">Date and Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="o: ${obuki}">
+                        <td th:text="${o.getId_obuka()}"></td>
+                        <td th:text="${o.getOpis()}"></td>
+                        <td th:text="${o.getDatum_obuka()}"></td>
+                        <td class="text-right">
+                            <a th:href="@{'/obuki/edit-form/{id}' (id=${o.getId_obuka()})}" class="btn btn-sm btn-info"><i class="fa fa-trash">Edit</i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-3">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <a href="/obuki/add-form" class="btn btn-block btn-dark">Add new training</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

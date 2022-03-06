@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/home">COMPANY</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+            <ul class="navbar-nav m-auto">
+                <li class="nav-item m-auto">
+                    <a class="nav-link active" href="/employees">Employees</a>
+                </li>
+                <li class="nav-item m-auto">
+                    <a class="nav-link active" href="/employeesByDep">Developers By Department</a>
+                </li>
+                <li class="nav-item m-auto">
+                    <a class="nav-link active" href="/projects">Projects</a>
+                </li>
+                <li class="nav-item m-auto">
+                    <a class="nav-link active" href="/obuki">Trainings</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h2 class="jumbotron-heading">Add New Project</h2>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <form method="POST" action="/projects/add">
+
+                <div class="form-group">
+                    <label for='ime_proekt'>Project Name:</label>
+                    <input type="text"
+                           class="form-control"
+                           id="ime_proekt"
+                           name="ime_proekt"
+                           th:value="('')"
+                           required
+                           placeholder="Enter project name">
+                </div>
+                <div class="form-group">
+                    <label for='datum_pocetok'>Start Date:</label>
+                    <input type="text"
+                           class="form-control"
+                           id="datum_pocetok"
+                           name="datum_pocetok"
+                           th:value="('')"
+                           required
+                           placeholder="Enter project start date">
+                </div>
+
+                <div class="form-group">
+                    <label for='datum_kraj'>End Date:</label>
+                    <input type="text"
+                           class="form-control"
+                           id="datum_kraj"
+                           name="datum_kraj"
+                           th:value="('')"
+                           required
+                           placeholder="Enter project end date">
+                </div>
+<!--                <div class="form-group">-->
+<!--                    <label for='id_klient'>End Date:</label>-->
+<!--                    <input type="text"-->
+<!--                           class="form-control"-->
+<!--                           id="id_klient"-->
+<!--                           name="id_klient"-->
+<!--                           th:value="('')"-->
+<!--                           required-->
+<!--                           placeholder="Enter client">-->
+<!--                </div>-->
+
+                <div class="form-group">
+                    <label>Client</label>
+                    <select name="clientList" class="form-control">
+                        <option th:each="client : ${clientList}"
+                                th:value="${client.getId_klient()}"
+                                th:text="${client.getIme_firma()}">
+                        </option>
+                    </select>
+                </div>
+
+
+                <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                <a type="button" class="btn btn-primary" href="/projects">Back</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
